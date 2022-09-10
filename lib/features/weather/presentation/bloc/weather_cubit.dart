@@ -16,9 +16,11 @@ class WeatherCubit extends Cubit<WeatherStates> {
   }) : super(WeatherInitial());
 
   static WeatherCubit get(context) => BlocProvider.of(context);
+// model
   void getWeatherData({String cityName = 'cairo'}) {
     emit(WeatherLoadingState());
     currentWeather.call(cityName: cityName).then((value) {
+      // model = Model.fromJson(value.data);
       emit(value.fold(
           (failure) =>
               WeatherErrorState(error: _mapFailureToMsg(failure: failure)),
@@ -37,5 +39,4 @@ class WeatherCubit extends Cubit<WeatherStates> {
         return AppStrings.unExpectedError;
     }
   }
-
 }

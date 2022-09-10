@@ -25,11 +25,9 @@ class _TestScreenState extends State<TestScreen> {
   void initState() {
     controller.addListener(() {
       var x = controller.position.pixels;
-      print(x.toInt());
       if (x >= 12) {
         setState(() {
           silverTop = true;
-          print('hi');
         });
       } else {
         setState(() {
@@ -120,8 +118,8 @@ class _TestScreenState extends State<TestScreen> {
                           SizedBox(
                             height: (silverTop) ? 30.0 : 54.0,
                           ),
-                           if (isTop)
-                             Row(
+                          if (isTop)
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -133,8 +131,7 @@ class _TestScreenState extends State<TestScreen> {
                                   ),
                                 ),
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       '${weather.forecastWeather!.forecast[0].day!.minTempC!.toInt()}\u00B0 / ${weather.forecastWeather!.forecast[0].day!.maxTempC!.toInt()}\u00B0',
@@ -147,10 +144,11 @@ class _TestScreenState extends State<TestScreen> {
                                       height: 3.0,
                                     ),
                                     Text(
-                                      '${DateFormat('EE d MMM hh:mm').format(DateTime.fromMillisecondsSinceEpoch(1662508800 * 1000)).split(' ')[0]}, ${weather.locationModel!.localtime!.split(' ')[1]}',
+                                      DateFormat('EE, hh:mm a').
+                                      format(DateTime.fromMillisecondsSinceEpoch(weather.locationModel!.localtimeEpoch! * 1000)),
                                       style: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15.0,
+                                        fontSize: 10.0,
                                       ),
                                     ),
                                   ],
@@ -162,75 +160,77 @@ class _TestScreenState extends State<TestScreen> {
                                 ),
                               ],
                             )
-                           else Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                               Column(
-                                 crossAxisAlignment:
-                                 CrossAxisAlignment.start,
-                                 children: [
-                                   Text(
-                                     '${weather.currentWeather!.tempC}\u00B0',
-                                     style: const TextStyle(
-                                       fontSize: 36.0,
-                                       color: Colors.white,
-                                       fontWeight: FontWeight.w300,
-                                     ),
-                                   ),
-                                   if (isTop == false)
-                                     Row(
-                                       children: [
-                                         Text(
-                                           '${weather.locationModel!.name}',
-                                           style: const TextStyle(
-                                             fontSize: 20.0,
-                                             color: Colors.white,
-                                             fontWeight: FontWeight.w300,
-                                           ),
-                                         ),
-                                         const SizedBox(
-                                           width: 5.0,
-                                         ),
-                                         const Icon(
-                                           Icons.location_on,
-                                           size: 10,
-                                           color: Colors.white,
-                                         )
-                                       ],
-                                     ),
-                                   const SizedBox(
-                                     height: 6.0,
-                                   ),
-                                   Text(
-                                     '${weather.forecastWeather!.forecast[0].day!.minTempC!.toInt()}\u00B0 / ${weather.forecastWeather!.forecast[0].day!.maxTempC!.toInt()}\u00B0 Feels like ${weather.currentWeather!.feelsLike!.toInt()}\u00B0',
-                                     style: const TextStyle(
-                                       color: Colors.white,
-                                       fontSize: 12.0,
-                                     ),
-                                   ),
-                                   const SizedBox(
-                                     height: 3.0,
-                                   ),
-                                   Text(
-                                     '${DateFormat('EE d MMM hh:mm').format(DateTime.fromMillisecondsSinceEpoch(1662508800 * 1000)).split(' ')[0]}, ${weather.locationModel!.localtime!.split(' ')[1]}',
-                                     style: const TextStyle(
-                                       color: Colors.white,
-                                       fontSize: 10.0,
-                                     ),
-                                   ),
-                                 ],
-                               ),
-                               Image(
-                                 image: NetworkImage(
-                                     'https:${weather.currentWeather!.icon}',
-                                     scale: 1),
-                               ),
-                             ],
-                           ),
+                          else
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${weather.currentWeather!.tempC}\u00B0',
+                                      style: const TextStyle(
+                                        fontSize: 36.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                    if (isTop == false)
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '${weather.locationModel!.name}',
+                                            style: const TextStyle(
+                                              fontSize: 20.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 5.0,
+                                          ),
+                                          const Icon(
+                                            Icons.location_on,
+                                            size: 10,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Text(
+                                      '${weather.forecastWeather!.forecast[0].day!.minTempC!.toInt()}\u00B0 / ${weather.forecastWeather!.forecast[0].day!.maxTempC!.toInt()}\u00B0 Feels like ${weather.currentWeather!.feelsLike!.toInt()}\u00B0',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 3.0,
+                                    ),
+                                    //MM, hh:ss a
+                                    Text(
+                                      DateFormat('EE, hh:mm a').
+                                      format(DateTime.fromMillisecondsSinceEpoch(weather.locationModel!.localtimeEpoch! * 1000)),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Image(
+                                  image: NetworkImage(
+                                      'https:${weather.currentWeather!.icon}',
+                                      scale: 1),
+                                ),
+                              ],
+                            ),
                         ],
                       ),
                     ),
-                    leading: Text(''),
+                    leading: const SizedBox(),
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
@@ -238,46 +238,6 @@ class _TestScreenState extends State<TestScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Padding(
-                          //   padding:
-                          //       const EdgeInsets.symmetric(horizontal: 12.0),
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       const SizedBox(
-                          //         height: 6.0,
-                          //       ),
-                          //       Text(
-                          //         '${weather.currentWeather!.tempC}\u00B0',
-                          //         style: const TextStyle(
-                          //           fontSize: 40.0,
-                          //           color: Colors.white,
-                          //           fontWeight: FontWeight.w300,
-                          //         ),
-                          //       ),
-                          //       const SizedBox(
-                          //         height: 20.0,
-                          //       ),
-                          //       Text(
-                          //         '${weather.forecastWeather!.forecast[0].day!.minTempC}\u00B0 / ${weather.forecastWeather!.forecast[0].day!.maxTempC}\u00B0 Feels like ${weather.currentWeather!.feelsLike}\u00B0',
-                          //         style: const TextStyle(
-                          //           color: Colors.white,
-                          //           fontSize: 12.0,
-                          //         ),
-                          //       ),
-                          //       const SizedBox(
-                          //         height: 3.0,
-                          //       ),
-                          //       Text(
-                          //         '${DateFormat('EE d MMM hh:mm').format(DateTime.fromMillisecondsSinceEpoch(1662508800 * 1000)).split(' ')[0]}, ${weather.locationModel!.localtime!.split(' ')[1]}',
-                          //         style: const TextStyle(
-                          //           color: Colors.white,
-                          //           fontSize: 12.0,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                           const SizedBox(
                             height: 6.0,
                           ),

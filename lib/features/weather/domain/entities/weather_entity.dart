@@ -1,4 +1,5 @@
 // import 'package:equatable/equatable.dart';
+// import 'package:weather/features/weather/data/models/weather_model.dart';
 //
 // class WeatherEntity extends Equatable {
 //   final Location location;
@@ -35,14 +36,22 @@
 //       ];
 // }
 //
-// class Forecast extends Equatable {
+// class ForecastEntity extends Equatable {
 //   final List<ForecastDay> list;
 //
-//   const Forecast(this.list);
+//   const ForecastEntity({required this.list});
 //
 //   @override
 //   List<Object> get props => [list];
 // }
+//
+// // class ForecastModel extends ForecastEntity{
+// //   const ForecastModel({required super.list});
+// //
+// //   factory ForecastModel.fromJson(Map<String, dynamic> json){
+// //     return ForecastModel(list: List<ForecastDay>);
+// //   }
+// // }
 //
 // class ForecastDay extends Equatable {
 //   final String data;
@@ -55,6 +64,13 @@
 //         data,
 //         dateEpoch,
 //       ];
+// }
+//
+// class ForecastDayModel extends ForecastDay{
+//   const ForecastDayModel({required super.data, required super.dateEpoch});
+//   factory ForecastDayModel.fromJson(Map<String, dynamic> json){
+//     return ForecastDayModel(data: json['data'], dateEpoch: json['epoch']);
+//   }
 // }
 //
 // class WeatherHourly extends Equatable {
@@ -85,9 +101,9 @@
 // class WeatherModel extends WeatherEntity {
 //   const WeatherModel(super.location, super.forecast);
 //
-//   factory WeatherModel.fromJson(Map<String, dynamic> json) {
-//     return WeatherModel(LocationModel.fromJson(json['location']), forecast);
-//   }
+//   // factory WeatherModel.fromJson(Map<String, dynamic> json) {
+//   //   return WeatherModel(LocationModel.fromJson(json['location']), Forecast.);
+//   // }
 // }
 //
 // class LocationModel extends Location {

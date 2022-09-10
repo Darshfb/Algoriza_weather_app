@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
         title: IconButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                return TestScreen();
+                return const TestScreen();
               }));
               // WeatherCubit.get(context).getWeatherData(cityName: 'Alexandria');
             },

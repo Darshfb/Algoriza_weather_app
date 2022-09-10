@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weather/core/shared/Local/cache_helper.dart';
 import 'package:weather/core/shared/component/custom_button.dart';
 import 'package:weather/core/shared/component/custom_text_form_field.dart';
-import 'package:weather/core/strings/colors.dart';
 import 'package:weather/features/weather/presentation/bloc/weather_cubit.dart';
 
 class AppDrawer extends StatelessWidget {

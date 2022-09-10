@@ -15,6 +15,7 @@ class LocationModel {
   String? region;
   String? country;
   String? localtime;
+  int? localtimeEpoch;
 
   LocationModel({
     required this.name,
@@ -28,6 +29,7 @@ class LocationModel {
     region = json['region'];
     country = json['country'];
     localtime = json['localtime'];
+    localtimeEpoch = json['localtime_epoch'];
   }
 }
 
@@ -58,16 +60,6 @@ class ForecastWeather {
     });
   }
 }
-
-// class ForeCastMain {
-//   List<ForecastDay> forecastDay = [];
-//
-//   ForeCastMain.fromJson(Map<String, dynamic> json) {
-//     json['forecastday'].forEach((e) {
-//       forecastDay.add(ForecastDay.fromJson(e));
-//     });
-//   }
-// }
 
 class ForecastDay {
   String? date;
@@ -147,3 +139,13 @@ class ForecastHour {
   }
 }
 
+
+// class ForeCastMain {
+//   List<ForecastDay> forecastDay = [];
+//
+//   ForeCastMain.fromJson(Map<String, dynamic> json) {
+//     json['forecastday'].forEach((e) {
+//       forecastDay.add(ForecastDay.fromJson(e));
+//     });
+//   }
+// }
