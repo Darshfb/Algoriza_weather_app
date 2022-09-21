@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather/core/shared/Local/cache_helper.dart';
 import 'package:weather/core/shared/Network/dio_helper.dart';
 import 'package:weather/core/shared/Network/info.dart';
